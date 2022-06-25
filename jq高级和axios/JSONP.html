@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../jQuery/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        //           同源
+        //           页面的协议, 域名, 端口都相同, 就具有相同的源
+
+
+        //           同源策略
+        //           浏览器提供一个安全功能
+        //           A网站的js, 不能和不同源的C网站, 进行资源交互
+
+
+
+        //           跨域
+        //           页面的协议, 域名, 端口有一个不相同, 就是跨域
+        //           浏览器对跨域请求拦截
+        //           浏览器允许发起跨域请求, 但是,跨域回来的数据,会被浏览器拦截, 无法被页面得到
+
+
+
+
+
+        
+        //           如何实现跨域请求
+
+        //           JSONP
+
+        //           网页中Ajax请求非同源, 会受到同源策略限制, 但是script标签不受影响
+        //           因此, JSONP通过script标签src属性, 请求跨域的数据接口, 并通过函数调用的形式, 接收数据
+
+        // $.ajax({
+        //     method:'GET',
+        //     url: 'http://ajax.frontend.itheima.net:3006/api/jsonp',
+        //     data:{
+        //         name: 'zs',
+        //         age:20
+        //     },
+        //     success: function(res){
+        //         console.log(res);
+        //     }
+        // })
+
+
+
+        //           JSONP实现原理
+        
+        //           1 定义一个函数
+        //           2 通过src属性请求服务器调用, 通过查询字符串指定调用函数名
+        //           3 服务器返回一个函数调用
+
+
+
+
+        //           自己实现简单JSONP
+        // function success(data){
+        //     console.log(data);
+        // }
+
+
+
+        //           缺点
+        //           只能是get请求,  不能post
+        //           JSONP与Ajax无任何关系
+
+
+
+
+        //           jQuery中的JSONP
+        // $(function(){
+        //     $.ajax({
+        //     url:'http://ajax.frontend.itheima.net:3006/api/jsonp?name=zs&age=20',
+        //     dataType:'jsonp',
+        //     success:function(res){
+        //         console.log(res);
+        //     }
+        // })
+        // })
+
+
+        //           jQuery中JSONP实现过程
+        //           1 发起JSONP请求时, 动态向header标签中append一个script标签
+        //           2 成功后, 再移除
+
+
+    </script>
+    <!-- <script src="http://ajax.frontend.itheima.net:3006/api/jsonp?callback=success&name=ls&age=30">
+
+    </script> -->
+</body>
+</html>

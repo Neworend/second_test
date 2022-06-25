@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="file" name="" id="file1">
+
+    <button id="btnUpload">上传文件</button>
+
+    <!-- img标签, 显示上传成功以后的图片 -->
+    <img src="" alt="" id="img" width="800">
+
+    <script>
+        //           旧版缺点
+        //           只支持文本数据传输, 无法读取文件和上传文件
+        //           没有进度条
+
+
+        //           新功能
+        //           1 可以设置HTTP请求的时限
+        //           2 使用formData对象管理表单数据
+        //           3 可以上传文件
+        //           4 可以获得进度信息
+
+
+
+        //           设置HTTP请求时限
+        // xhr.timeout = 3000
+
+        //           设置超时事件
+        // xhr.ontimeout = function(){
+        //     console.log('请求超时!');
+        // }
+
+
+
+        //           FormData对象管理表单数据
+        //           1 创建 FormData 对象
+        // var fd = new FormData()
+
+        //           2 调用 append()函数 添加数据
+        // fd.append('uname', 'zt')
+        // fd.append('upwd','123456')
+
+        // var xhr = new XMLHttpRequest()
+
+        // xhr.open('post','http://www.liulongbin.top:3006/api/formdata')
+
+        // xhr.send(fd)
+
+        // xhr.onreadystatechange = function(){
+        //     if(xhr.readyState === 4 && xhr.status ===200){
+        //         console.log(JSON.parse(xhr.responseText));
+        //     }
+        // }
+
+
+
+        //           FormData对象管理表单数据
+        //           可以获取网页表单的值
+
+        //           获取form表单元素
+        // var form = document.querySelector('form')
+
+        // form.addEventListener('submit',function(e){
+        //     // 阻止表单提交的默认行为
+        //     e.preventDefault()
+
+        //     // 创建FormData, 快速得到form表单中的数据
+        //     var fd = new FormData(form)
+
+        //     // 剩下常规写
+        // })
+
+
+
+        //           上传文件
+        //           1 定义ui结构
+
+
+        //           2 验证是否选择了文件
+        //           获取上传按钮
+        var btnUpload = document.querySelector('#btnUpload')
+        //           绑定事件
+        btnUpload.addEventListener('click',function(){
+            // 获取用户选择的文件列表
+            var files = document.querySelector('#file1').files
+            if(files.length <=0){
+                return alert('请选择')
+            }
+
+        //           3 向FormData中追加文件
+        var fd = new FormData()
+        fd.append('avatar', files[0])
+
+        //           4 使用xhr发起上传文件请求
+        var xhr = new XMLHttpRequest()
+
+        xhr.open('post','http://www.liulongbin.top:3006/api/upload/avatar')
+
+        xhr.send(fd)
+
+        //           5 监听事件
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4 && xhr.status ===200){
+                var data = JSON.parse(xhr.responseText)
+                if(data.status === 200){
+                    // 上传成功
+                    document.querySelector('#img').src = 'http://www.liulongbin.top:3006' + data.url
+                }else{
+                    // 上传失败
+                    console.log('图片上传失败'+data.message);
+                }
+            }
+        }
+        })
+
+
+
+
+        //           显示文件上传进度
+        // e.lengthComputable  是一个布尔值, 表示当前上传资源是否有可计算长度
+        // e.loaded   已传输的字节
+        // e.total   需要传输的字节
+
+        //           监听文件上传进度
+        // xhr.upload.onprogress = function(e){
+        //     if(e.lengthComputable){
+        //         var procentComplete=  Math.ceil((e.loaded/e.total)*100)
+        //         console.log(procentComplete);
+        //     }
+        // }
+
+
+        
+                   
+        
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../form表单及模板引擎/template-web.js"></script>
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script type="text/html" id="tpl-user">
+        <h1>{{name}}</h1>
+    </script>
+
+    <script>
+        //           模板引擎
+        //           根据模板结构和数据, 自动生成一个完整的HTML页面
+
+        //           减少字符串拼接
+        //           使代码清晰, 更易于阅读和维护
+
+
+
+        //           art-template模板引擎
+        //           安装 http://aui.github.io/art-template/zh-cn/docs/installation.html  链接另存为
+
+
+        //           传统方式渲染UI结构
+        //           先获取所有数据 , 再通过dom操作渲染
+
+
+        //           基本使用
+
+        //           1 导入模板引擎后, window多了一个函数 template('模板ID',需要渲染的数据对象)
+
+        //           2 定义需要渲染的数据
+        let data = { name: 'zt'}
+
+        //           3 定义模板  必须定义到script中, 指定type为html
+
+        //           4 调用 template函数
+        let htmlStr = template('tpl-user',data)
+
+        //           5 渲染HTML结构
+        document.querySelector('#container').innerHTML = htmlStr
+
+
+        //           标准语法
+        //           {{}} 可以进行变量输出, 循环数组
+
+        //           可以进行变量输出, 对象属性输出, 三元表达式, 逻辑运算符, 加减乘除等
+
+        //           原文输出  {{@ value}}  要输出的值中, 包含HTML标签, 则必须使用原文输出
+
+        //           条件输出
+        // {{if flag === 0}}
+        // flag的值为0
+        // {{else if flag === 1}}
+        // flag的值为1
+        // {{/if}}
+
+        //           循环输出
+        // {{each 数组}}
+        // <li>索引是:{{$index}}, 循环项是:{{$value}}</li>
+        // {{/each}}
+
+        //           过滤器
+        // {{value | filterName}}
+        // template.defaults.imports.filterName = function(value){return 处理结果}
+
+
+
+
+        //           模板引擎实现原理
+        //           exec() 检索字符串中正则表达式的匹配
+        //           如果有匹配值, 则返回, 否则返回null
+
+        //           RegExpObject.exec(string)
+        // let str = 'hello'
+        // let pattern = /o/
+
+        // let result = patten.exec(str)
+        // console.log(result);
+
+        
+
+
+        
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./axios.mini.js"></script>
+</head>
+<body>
+    <button id="btn1">发起</button>
+    <script>
+        //           Axios是专注于网络数据请求的 库
+        //           相比于原生, axios简单易用
+        //           相比于jq, 更轻量化, 只专注于网络数据请求
+
+
+        //           用axios发起get请求
+        // document.querySelector('#btn1').addEventListener('click',function(){
+        //     var url = 'http://www.liulongbin.top:3006/api/get'
+        //     var p = {name : 'zs',age: 20}
+        //     axios.get(url, {params:p}).then(function(res){
+        //         console.log(res.data);
+        //     })
+        // })
+
+
+        //           用axios发起post请求
+        // document.querySelector('#btn1').addEventListener('click',function(){
+        //     var url = 'http://www.liulongbin.top:3006/api/post'
+        //     var p = {address : '北京',location: '顺义区'}
+        //     axios.post(url, p).then(function(res){
+        //         console.log(res.data);
+        //     })
+        // })
+
+
+        //           直接只用axios发起请求
+        // axios({
+        //     method: '请求类型',
+        //     url: '请求的url地址',
+        //     data: {post数据},
+        //     params: {get参数}
+        // }).then(callback)
+
+    </script>
+</body>
+</html>

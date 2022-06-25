@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //           XMLHttpRequest 的基本使用
+
+        //           使用xhr发起 GET 请求
+
+        //           1 创建xhr对象
+        var xhr = new XMLHttpRequest()
+
+        //           2 调用open() 函数  (创建请求)
+        xhr.open('GET','http://www.liulongbin.top.3006/api/getbooks')
+
+        //           3 调用send() 函数  (发送请求)
+        xhr.send()
+
+        //           4 监听 onreadystatechange 事件
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4 && xhr.status ===200) {
+                // 获取服务器响应数据
+                console.log(xhr.responseText);
+            }
+        }
+
+
+        //           xhr对象的 readyState属性
+        //           用来表示当前Ajax 请求所处的状态
+
+        //           0        xhr对象已经被创建, 但尚未被调用 open()方法
+        //           1        open() 方法已经被调用
+        //           2        send() 方法已经被调用, 响应头已经被接收
+        //           3        数据接受中, 此时respone属性中已经包含部分数据
+        //           4        Ajax请求完成, 已经意味着成功或者失败
+
+
+
+        //           使用xhr发起带参数的GET请求
+        // xhr.open('GET','http://www.liulongbin.top:3006/api/getbooks?id=1')
+
+
+        //           查询字符串
+        //           将?放到URL的末尾, 再加上参数=值, 多个参数, 用&分隔
+
+
+
+        //           GET请求携带参数的本质
+        //           本质上都是直接将参数以查询字符串的形式追加到URL后面
+
+        
+
+        //           什么是URL编码
+        //           URL只允许出现英文, 不能出现中文
+        //           如果需要中文, 则需要编码    使用英文字符表示非英文字符
+
+
+        //           URL编码与解码
+        //           encodeURI() 编码      decodeURI() 解码
+
+
+
+        //           使用xhr发起post请求
+
+        //           1 2 步骤和get一致
+
+        //           3 设置 Concent-Type 属性
+        // xhr.setRequestHeader('Concent-Type', 'appliaction/x-www-form-urlencoded')
+
+        //           4 调用send 函数
+        // xhr.send('bookname=水浒传&author=施耐庵')
+
+        
+
+
+
+    </script>
+</body>
+</html>

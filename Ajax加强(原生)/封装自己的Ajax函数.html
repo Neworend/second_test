@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //           封装自己Ajax函数
+        //           需要method   url     data      success 
+
+
+        //           处理data参数
+        function resolveData(data){
+            var arr = []
+            for(let k in data) {
+                arr.push(k +'='+ data[k] )
+            }
+            return arr.join('&')
+        }
+
+        // console.log(resolveData({name: 'zt'}));
+
+
+        //           定义zt函数
+        // function zt(options) {
+        //     var xhr = new XMLHttpRequest()
+
+        //     // 把外界传递过来的参数对象, 转化为 查询字符串
+        //     var qs = resolveData(options.data) 
+
+        //     xhr.onreadystatechange = function() {
+        //         if(xhr.readyState ===4 && xhr.status === 200){
+        //             var result = JSON.parse(xhr.responseText)
+        //             options.success(result)
+        //         }
+        //     }
+        // }
+
+
+        //           判断请求类型
+
+        function zt(options) {
+            var xhr = new XMLHttpRequest()
+            // 把外界传递过来的参数对象, 转化为 查询字符串
+            var qs = resolveData(options.data) 
+
+            // 判断
+            if(options.method.toUpperCase() === 'GET'){
+                // 发起GET请求
+                xhr.open('GET', options.url + '?' + qs)
+                xhr.send()
+            }else if(options.method.toUpperCase() === 'POST') {
+                // 发起POST请求
+                xhr.open(options.method, options.url)
+                xhr.setRequestHeader('Concent-Type', 'appliaction/x-www-form-urlencoded')
+                xhr.send(qs)
+            }
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState ===4 && xhr.status === 200){
+                    var result = JSON.parse(xhr.responseText)
+                    options.success(result)
+                }
+            }
+        }
+        zt({
+            method:'get',
+            url:'http://www.liulongbin.top:3006/api/getbooks',
+            data:{
+               id: 1
+            },
+            success: function(res){
+                console.log(res);
+            }
+        })
+    </script>
+</body>
+</html>

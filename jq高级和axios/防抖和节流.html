@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../jQuery/jquery.min.js"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #angel{
+            width: 70px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <img src="../../js ECMA  DOM  BOM/images/1.jpg" alt="" id="angel">
+    <script>
+        //           防抖
+        //           事件在延迟时间内, 再次触发, 则重新计时
+
+
+        //           应用场景    搜索框防抖
+        //           淘宝搜索, 全部输入完再进行发起请求
+
+
+        //           1 定义延时器的ID
+        // var timer = null
+
+
+        //           2 定义防抖的函数
+        // function decounceSearch(kw){
+        //     timer = setTimeout(function(){
+        //         getSuggestList(kw)
+        //     },500)
+        // }
+
+        //           3 在绑定事件中, 清除timer
+
+
+
+
+        //           缓存搜索的建议列表
+        // 案例有
+
+
+
+
+        //           节流
+        //           节流策略: 减少一段时间内事件的触发频率
+        //           理解: 发射子弹, 两发子弹空白期间, 按按钮无效
+
+
+        $(function(){
+
+            // 1 获取图片
+            var angel = $('#angel')
+
+            // 定义节流阀
+            var timer = null
+
+            // 2 绑定mousemove事件
+            $(document).on('mousemove',function(e){
+                if(timer) return
+
+                // 开启延时器
+                timer = setTimeout(function(){
+                // 3 设置图片位置
+                $(angel).css('top', e.pageY+ 'px').css('left',e.pageX + 'px')                   
+
+                timer = null
+                },15)
+            })
+        })
+        
+
+        //           节流阀
+        //           节流阀为空, 表示可以执行下一次操作, 不为空, 表示不能执行下一次操作
+
+
+
+
+        //           防抖: 只有最后一次触发生效
+        //           节流: 减少频率, 间隔期间不执行, 有选择地执行一部分
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
